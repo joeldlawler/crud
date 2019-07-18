@@ -1,43 +1,55 @@
 import { BadInput } from "./../common/bad-input";
 import { NotFoundError } from "./../common/not-found-error";
 import { AppError } from "./../common/app-error";
-import { Http } from "@angular/http";
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/throw";
+import { Observable, of } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 
 @Injectable()
 export class DataService {
-  constructor(private url: string, private http: Http) {}
+  constructor(private url: string, private http: HttpClient) { }
 
   getAll() {
-    return this.http
-      .get(this.url)
-      .map(response => response.json())
-      .catch(this.handleError);
+    return this.http.get(this.url).pipe(
+      map((res: any) => res.json()),
+      catchError(<T>(error: any, result?: T) => {
+        this.handleError;
+        return of(result as T);
+      })
+    );
   }
 
   create(resource) {
-    return this.http
-      .post(this.url, JSON.stringify(resource))
-      .map(response => response.json())
-      .catch(this.handleError);
+    return this.http.post(this.url, JSON.stringify(resource)).pipe(
+      map((res: any) => res.json()),
+      catchError(<T>(error: any, result?: T) => {
+        this.handleError;
+        return of(result as T);
+      })
+    );
   }
 
   update(resource) {
-    return this.http
-      .patch(this.url + "/" + resource.id, JSON.stringify({ isRead: true }))
-      .map(response => response.json())
-      .catch(this.handleError);
+    return this.http.patch(this.url + "/" + resource.id, JSON.stringify({ isRead: true })).pipe(
+      map((res: any) => res.json()),
+      catchError(<T>(error: any, result?: T) => {
+        this.handleError;
+        return of(result as T);
+      })
+    );
   }
 
   delete(id) {
-    return this.http
-      .delete(this.url + "/" + id)
-      .map(response => response.json())
-      .catch(this.handleError);
+
+    return this.http.delete(this.url + "/" + id).pipe(
+      map((res: any) => res.json()),
+      catchError(<T>(error: any, result?: T) => {
+        this.handleError;
+        return of(result as T);
+      })
+    );
+
   }
 
   private handleError(error: Response) {
