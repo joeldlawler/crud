@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.getAll('https://wemp.azurewebsites.net/api/wapi').subscribe(employees => {
+    of(this.dataService.getAll('https://wemp.azurewebsites.net/api/wapi').subscribe(employees => {
       this.employees = employees;
-    }); 
+    })); 
   }
 
 }
