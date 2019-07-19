@@ -1,1 +1,3 @@
-<p>home works!</p>
+<ng-template ngFor let-item [ngForOf]="employees" let-i="index">
+    <li>{{item.displayname}}</li>
+</ng-template>

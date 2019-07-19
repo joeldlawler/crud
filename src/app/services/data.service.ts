@@ -1,55 +1,39 @@
 import { BadInput } from "./../common/bad-input";
 import { NotFoundError } from "./../common/not-found-error";
 import { AppError } from "./../common/app-error";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from  '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 
 @Injectable()
 export class DataService {
-  constructor(private url: string, private http: HttpClient) { }
 
-  getAll() {
-    return this.http.get(this.url).pipe(
-      map((res: any) => res.json()),
-      catchError(<T>(error: any, result?: T) => {
-        this.handleError;
-        return of(result as T);
-      })
-    );
+  headers={headers: new HttpHeaders({'Content-Type': 'application/json'})}
+
+  constructor(private httpClient: HttpClient) { }
+
+  getAll(url:string){
+    return this.httpClient.get(url).pipe(catchError(this.handleError)); 
   }
 
-  create(resource) {
-    return this.http.post(this.url, JSON.stringify(resource)).pipe(
-      map((res: any) => res.json()),
-      catchError(<T>(error: any, result?: T) => {
-        this.handleError;
-        return of(result as T);
-      })
-    );
+  getSingle(url:string){
+    return this.httpClient.get(url).pipe(catchError(this.handleError));
   }
 
-  update(resource) {
-    return this.http.patch(this.url + "/" + resource.id, JSON.stringify({ isRead: true })).pipe(
-      map((res: any) => res.json()),
-      catchError(<T>(error: any, result?: T) => {
-        this.handleError;
-        return of(result as T);
-      })
-    );
+  create(url:string, resource:any) {
+    return this.httpClient
+      .post(url, JSON.stringify(resource), this.headers).pipe(catchError(this.handleError)); 
   }
 
-  delete(id) {
+  update(url:string, id:number, resource:any) {
+    return this.httpClient
+      .put(url + id, JSON.stringify(resource), this.headers).pipe(catchError(this.handleError));
+  }
 
-    return this.http.delete(this.url + "/" + id).pipe(
-      map((res: any) => res.json()),
-      catchError(<T>(error: any, result?: T) => {
-        this.handleError;
-        return of(result as T);
-      })
-    );
-
+  delete(url:string, id:number) {
+    return this.httpClient
+      .delete(url + id);
   }
 
   private handleError(error: Response) {
