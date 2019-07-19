@@ -7,7 +7,7 @@ import { HomeComponent } from './component/home/home.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { DataService } from './services/data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {A11yModule} from '@angular/cdk/a11y';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PortalModule} from '@angular/cdk/portal';
@@ -49,13 +49,18 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { FormtemplateComponent } from './component/formtemplate/formtemplate.component';
+import { ValidationService } from './services/validation.service';
+import { ControlmessageComponent } from './component/controlmessage/controlmessage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FormtemplateComponent,
+    ControlmessageComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,8 @@ import {MatTreeModule} from '@angular/material/tree';
     CdkTableModule,
     CdkTreeModule,
     DragDropModule,
+    FormsModule, 
+    ReactiveFormsModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -149,7 +156,7 @@ import {MatTreeModule} from '@angular/material/tree';
     PortalModule,
     ScrollingModule,
   ],
-  providers: [DataService],
+  providers: [DataService, ValidationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
