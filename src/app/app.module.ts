@@ -52,6 +52,10 @@ import {MatTreeModule} from '@angular/material/tree';
 import { FormtemplateComponent } from './component/formtemplate/formtemplate.component';
 import { ValidationService } from './services/validation.service';
 import { ControlmessageComponent } from './component/controlmessage/controlmessage.component';
+import { GraphQLformComponent } from './component/graph-qlform/graph-qlform.component';
+import { GraphQLlistComponent } from './component/graph-qllist/graph-qllist.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -60,7 +64,9 @@ import { ControlmessageComponent } from './component/controlmessage/controlmessa
     HomeComponent,
     NotfoundComponent,
     FormtemplateComponent,
-    ControlmessageComponent
+    ControlmessageComponent,
+    GraphQLformComponent,
+    GraphQLlistComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +117,8 @@ import { ControlmessageComponent } from './component/controlmessage/controlmessa
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    FlexLayoutModule,
+    GraphQLModule
   ],
   exports: [
     A11yModule,

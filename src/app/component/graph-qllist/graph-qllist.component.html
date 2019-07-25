@@ -1,0 +1,25 @@
+  <mat-card class="main-card">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>GraphQL Data</mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngIf="loading">
+            Loading...
+          </div>
+          <div *ngIf="error">
+            Error :(
+          </div>
+        <ng-template ngFor let-rate [ngForOf]="rates" let-i="index">
+            <mat-card class="sub-card">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{rate.currency}}</mat-card-title>
+                        <mat-card-subtitle>{{rate.rate}}</mat-card-subtitle>
+                    </mat-card-title-group>    
+                </mat-card-header>
+            </mat-card>
+        </ng-template>
+    </mat-card-content>
+</mat-card>
