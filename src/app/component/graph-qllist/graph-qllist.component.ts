@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Apollo} from 'apollo-angular';
+import { Component, OnInit } from '@angular/core';
+import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { of } from 'rxjs';
+import { Rate } from '../../models/rate';
 
 @Component({
   selector: 'app-graph-qllist',
@@ -9,29 +11,33 @@ import gql from 'graphql-tag';
 })
 export class GraphQLlistComponent implements OnInit {
 
-  rates: any[];
-  loading = true;
-  error: any;
+  color = 'primary';
+  mode = 'determinate';
+  value = 30;
 
-  constructor(private apollo: Apollo) {}
+  rates: Rate[];
+  loading = true;
+  private query: QueryRef<any>;
+
+  constructor(private apollo: Apollo) { }
 
   ngOnInit() {
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            rates(currency: "USD") {
-              currency
-              rate
-            }
-          }
-        `,
-      })
-      .valueChanges.subscribe(result => {
-        this.rates = result.data && result.data.rates;
-        this.loading = result.loading;
-        this.error = result.error;
-      });
+    this.query = this.apollo.watchQuery({
+      query: gql`
+      {
+        rates(currency: "USD") {
+          currency
+          rate
+        }
+      }
+  `
+    });
+
+    this.query.valueChanges.subscribe(result => {
+      this.rates = result.data.rates;
+      this.loading = result.loading;
+    });
+
   }
 
 }
