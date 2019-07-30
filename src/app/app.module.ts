@@ -56,6 +56,7 @@ import { GraphQLformComponent } from './component/graph-qlform/graph-qlform.comp
 import { GraphQLlistComponent } from './component/graph-qllist/graph-qllist.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GraphQLModule } from './graphql.module';
+import { SearchPipe } from './pipe/search.pipe';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { GraphQLModule } from './graphql.module';
     FormtemplateComponent,
     ControlmessageComponent,
     GraphQLformComponent,
-    GraphQLlistComponent
+    GraphQLlistComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

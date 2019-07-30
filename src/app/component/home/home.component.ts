@@ -10,6 +10,7 @@ import { of } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   employees;
+  searchText;
 
   constructor(
     private dataService: DataService
@@ -19,6 +20,10 @@ export class HomeComponent implements OnInit {
     of(this.dataService.getAll('https://wemp.azurewebsites.net/api/wapi').subscribe(employees => {
       this.employees = employees;
     })); 
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 
 }

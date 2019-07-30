@@ -1,7 +1,14 @@
 <mat-card class="main-card">
     <mat-card-header>
         <mat-card-title-group>
-            <mat-card-title>Contact Form</mat-card-title>
+            <mat-card-title>
+                <ng-container *ngIf="newConact">
+                    Create Contact
+                </ng-container>
+                <ng-container *ngIf="!newConact">
+                    Edit Contact
+                </ng-container>
+            </mat-card-title>
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>

@@ -1,4 +1,3 @@
-
 <mat-card class="main-card">
     <mat-card-header>
         <mat-card-title-group>
@@ -6,15 +5,20 @@
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <ng-template ngFor let-item [ngForOf]="employees" let-i="index">
+        <div class="form-group row">
+            <mat-form-field>
+                <input matInput type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search">
+            </mat-form-field>
+        </div>
+        <div *ngFor=" let item of employees | search: {displayname: searchText} ; let i = index; trackBy: trackByFn;">
             <mat-card class="sub-card">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{item.displayname}}</mat-card-title>
                         <mat-card-subtitle>{{item.title}}</mat-card-subtitle>
-                    </mat-card-title-group>    
+                    </mat-card-title-group>
                 </mat-card-header>
             </mat-card>
-        </ng-template>
+        </div>
     </mat-card-content>
 </mat-card>
