@@ -1,0 +1,35 @@
+<header>
+    <mat-toolbar color="primary" class="mat-elevation-z4">
+
+        <nav>
+
+            <!-- Desktop Nav -->
+
+            <div class="nav">
+
+                <button mat-button [matMenuTriggerFor]="other">Other</button>
+                <mat-menu #other="matMenu">
+                    <a mat-menu-item *ngFor="let item of otherItems"
+                        [routerLink]="[item.route]">{{item.displayName}}</a>
+                </mat-menu>
+
+            </div>
+
+            <!-- Mobile Nav -->
+
+            <div class="mobilenav">
+
+                <button mat-mini-fab color="primary" [matMenuTriggerFor]="other" matTooltip="Other"
+                    matTooltipPosition="below">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #other="matMenu">
+                    <a mat-menu-item *ngFor="let item of otherItems"
+                        [routerLink]="[item.route]">{{item.displayName}}</a>
+                </mat-menu>
+
+            </div>
+        </nav>
+
+    </mat-toolbar>
+</header>

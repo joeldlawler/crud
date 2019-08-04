@@ -1,7 +1,7 @@
 <mat-card class="main-card">
     <mat-card-header>
         <mat-card-title-group>
-            <mat-card-title>Waller People</mat-card-title>
+            <mat-card-title>Waller People {{dataFilter | json}}</mat-card-title>
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
@@ -10,12 +10,13 @@
                 <input matInput type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search">
             </mat-form-field>
         </div>
-        <div *ngFor=" let item of employees | search: {displayname: searchText} ; let i = index; trackBy: trackByFn;">
+        <div *ngFor=" let item of filteredEmployees; let i = index; trackBy: trackByFn;">
             <mat-card class="sub-card">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{item.displayname}}</mat-card-title>
-                        <mat-card-subtitle>{{item.title}}</mat-card-subtitle>
+                        <mat-card-subtitle>Title: {{item.title}}</mat-card-subtitle>
+                        <mat-card-subtitle>Location: {{item.office}}</mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
             </mat-card>

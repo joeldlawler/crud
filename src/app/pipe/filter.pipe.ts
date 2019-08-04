@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'search'
+  name: 'filter'
 })
-export class SearchPipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
   transform(items: any, filter: any, defaultFilter: boolean): any {
-    if (!filter) {
+
+
+    if (!filter || !Object.keys(filter).some(x => filter[x] !== void 0)) {
       return items;
     }
 
@@ -32,5 +34,4 @@ export class SearchPipe implements PipeTransform {
       }
     }
   }
-
 }

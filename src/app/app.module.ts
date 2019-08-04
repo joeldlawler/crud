@@ -57,6 +57,9 @@ import { GraphQLlistComponent } from './component/graph-qllist/graph-qllist.comp
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GraphQLModule } from './graphql.module';
 import { SearchPipe } from './pipe/search.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import { SearchPipe } from './pipe/search.pipe';
     ControlmessageComponent,
     GraphQLformComponent,
     GraphQLlistComponent,
-    SearchPipe
+    SearchPipe,
+    FilterPipe,
+    NavbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

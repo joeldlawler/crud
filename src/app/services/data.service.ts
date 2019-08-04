@@ -13,7 +13,7 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(url:string){
+  getAll(url:string) : any{
     return this.httpClient.get(url).pipe(catchError(this.handleError)); 
   }
 
